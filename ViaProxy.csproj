@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>     
+
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\ViaProxyPage.html" />
+    <EmbeddedResource Include="Configuration\ViaProxyPage.js" />
+    <EmbeddedResource Include="thumb.png" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MediaBrowser.Server.Core" Version="4.7.9" />
+		<PackageReference Include="System.Memory" Version="4.5.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Emby.Server.Implementations">
+	    <HintPath>Emby.Server.Implementations.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<PostBuildEvent>xcopy "$(SolutionDir)bin\Release\net6.0\ViaProxy.dll" "$(SolutionDir)..\..\Work\programdata\plugins\" /Y</PostBuildEvent>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+</Project>
